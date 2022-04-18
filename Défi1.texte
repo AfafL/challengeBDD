@@ -10,17 +10,18 @@ La commande SHOW TABLES montre que la base de données donkey_db_quest existe et
 
 
 mysql> DESCRIBE wizard;
-+-------------+--------------+------+-----+---------+-------+
-| Field       | Type         | Null | Key | Default | Extra |
-+-------------+--------------+------+-----+---------+-------+
-| is_muggle   | tinyint(4)   | NO   | PRI | NULL    |       |
-| firstname   | varchar(100) | NO   |     | NULL    |       |
-| lastname    | varchar(100) | NO   |     | NULL    |       |
-| birthday    | date         | NO   |     | NULL    |       |
-| birth_place | varchar(255) | YES  |     | NULL    |       |
-| biography   | text         | YES  |     | NULL    |       |
-+-------------+--------------+------+-----+---------+-------+
-6 rows in set (0,05 sec)
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| firstname   | varchar(100) | NO   |     | NULL    |                |
+| lastname    | varchar(100) | NO   |     | NULL    |                |
+| birthday    | date         | NO   |     | NULL    |                |
+| birth_place | varchar(255) | YES  |     | NULL    |                |
+| biography   | text         | YES  |     | NULL    |                |
+| is_muggle   | tinyint(4)   | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+7 rows in set (0,01 sec)
 
 La table wizard est correctement importée. Elle contient bien un nouveau champ is_muggle de type BOOL et NOT NULL.
 La table school existe et contient les
