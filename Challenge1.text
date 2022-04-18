@@ -1,0 +1,40 @@
+mysql> SHOW TABLES FROM donkey_db_quest;
++---------------------------+
+| Tables_in_donkey_db_quest |
++---------------------------+
+|  school                   |
+| wizard                    |
++---------------------------+
+2 rows in set (0,02 sec)
+La commande SHOW TABLES montre que la base de données donkey_db_quest existe et contient les deux tables wizard et school
+
+
+mysql> DESCRIBE wizard;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| is_muggle   | tinyint(4)   | NO   | PRI | NULL    |       |
+| firstname   | varchar(100) | NO   |     | NULL    |       |
+| lastname    | varchar(100) | NO   |     | NULL    |       |
+| birthday    | date         | NO   |     | NULL    |       |
+| birth_place | varchar(255) | YES  |     | NULL    |       |
+| biography   | text         | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+6 rows in set (0,05 sec)
+
+La table wizard est correctement importée. Elle contient bien un nouveau champ is_muggle de type BOOL et NOT NULL.
+La table school existe et contient les
+
+mysql> DESCRIBE ` school`;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+|  id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(100) | NO   |     | NULL    |                |
+| capacity | int(11)      | YES  |     | NULL    |                |
+| country  | varchar(250) | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+4 rows in set (0,00 sec)
+
+La table school existe et contient les champs id, name, capacity et country, respectivement de type INT, VARCHAR(100), INT et VARCHAR(255).
+Le champ id de la table school est auto-incrémenté et est une clé primaire.
