@@ -37,4 +37,4 @@ mysql> DESCRIBE ` school`;
 4 rows in set (0,00 sec)
 
 La table school existe et contient les champs id, name, capacity et country, respectivement de type INT, VARCHAR(100), INT et VARCHAR(255).
-Le champ id de la table school est auto-incrémenté et est une clé primaire.
+Le champ id de la table school est auto-incrémenté et est une clé primaire
