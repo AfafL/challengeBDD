@@ -1,0 +1,81 @@
+//Insère dans la table school les données suivantes :
+
+Database changed
+mysql> SELECT * FROM donkey_db_quest.` school`;
++-----+----------------------------------------------+----------------+----------+
+|  id | name                                         | country        | capacity |
++-----+----------------------------------------------+----------------+----------+
+|   1 | Beauxbatons Academy of Magic                 | France         |      550 |
+|   2 | Castelobruxo                                 | Brazil         |      380 |
+|   3 | Durmstrang Institute                         | Norway         |      570 |
+|   4 | Hogwarts School of Witchcraft and Wizardry   | United Kingdom |      450 |
+|   5 | Ilvermorny School of Witchcraft and Wizardry | USA            |      300 |
+|   6 | Koldovstoretz                                | Russia         |      125 |
+|   7 | Mahoutokoro School of Magic                  | Japan          |      800 |
+|  10 | Uagadou School of Magic                      | Uganda         |      350 |
++-----+----------------------------------------------+----------------+----------+
+8 rows in set (0,01 sec)
+
+//“Durmstrang Institute” est en réalité en Suède (Sweden), modifie son pays.
+
+mysql> UPDATE `donkey_db_quest`.` school` SET ` id` = '8' WHERE (` id` = '10');
+UPDATE `donkey_db_quest`.` school` SET `country` = 'Sweden' WHERE (` id` = '3');Query OK, 0 rows affected (0,01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE `donkey_db_quest`.` school` SET `country` = 'Sweden' WHERE (` id` = '3');
+Query OK, 1 row affected (0,01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM donkey_db_quest.` school`;
++-----+----------------------------------------------+----------------+----------+
+|  id | name                                         | country        | capacity |
++-----+----------------------------------------------+----------------+----------+
+|   1 | Beauxbatons Academy of Magic                 | France         |      550 |
+|   2 | Castelobruxo                                 | Brazil         |      380 |
+|   3 | Durmstrang Institute                         | Sweden         |      570 |
+|   4 | Hogwarts School of Witchcraft and Wizardry   | United Kingdom |      450 |
+|   5 | Ilvermorny School of Witchcraft and Wizardry | USA            |      300 |
+|   6 | Koldovstoretz                                | Russia         |      125 |
+|   7 | Mahoutokoro School of Magic                  | Japan          |      800 |
+|   8 | Uagadou School of Magic                      | Uganda         |      350 |
++-----+----------------------------------------------+----------------+----------+
+8 rows in set (0,00 sec)
+
+//“Mahoutokoro School of Magic” passe à une capacité de 700
+
+mysql> UPDATE `donkey_db_quest`.` school` SET `capacity` = '700' WHERE (` id` = '7');
+Query OK, 1 row affected (0,06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM donkey_db_quest.` school`;
++-----+----------------------------------------------+----------------+----------+
+|  id | name                                         | country        | capacity |
++-----+----------------------------------------------+----------------+----------+
+|   1 | Beauxbatons Academy of Magic                 | France         |      550 |
+|   2 | Castelobruxo                                 | Brazil         |      380 |
+|   3 | Durmstrang Institute                         | Sweden         |      570 |
+|   4 | Hogwarts School of Witchcraft and Wizardry   | United Kingdom |      450 |
+|   5 | Ilvermorny School of Witchcraft and Wizardry | USA            |      300 |
+|   6 | Koldovstoretz                                | Russia         |      125 |
+|   7 | Mahoutokoro School of Magic                  | Japan          |      700 |
+|   8 | Uagadou School of Magic                      | Uganda         |      350 |
++-----+----------------------------------------------+----------------+----------+
+8 rows in set (0,00 sec)
+
+//Supprime en une seule requête toutes les écoles comportant “Magic” dans leur nom (il y en a 3). Tu peux t’aider du mot clé LIKE.
+Ensuite, affiche via une requête SELECT toutes les données de la table school et colle également le résultat dans le Gist.
+
+mysql> delete from ` school` where name like '%Magic';
+Query OK, 3 rows affected (0,03 sec)
+
+mysql> SELECT * FROM ` school`;
++-----+----------------------------------------------+----------------+----------+
+|  id | name                                         | country        | capacity |
++-----+----------------------------------------------+----------------+----------+
+|   2 | Castelobruxo                                 | Brazil         |      380 |
+|   3 | Durmstrang Institute                         | Sweden         |      570 |
+|   4 | Hogwarts School of Witchcraft and Wizardry   | United Kingdom |      450 |
+|   5 | Ilvermorny School of Witchcraft and Wizardry | USA            |      300 |
+|   6 | Koldovstoretz                                | Russia         |      125 |
++-----+----------------------------------------------+----------------+----------+
+5 rows in set (0,00 sec)
