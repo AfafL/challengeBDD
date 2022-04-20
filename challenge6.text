@@ -1,0 +1,75 @@
+//Retourne le nom des équipes et le nombre de joueurs par équipe, le tout classé par nombre de joueurs par équipe, 
+de la plus nombreuse à la moins nombreuse.
+
+
+mysql> SELECT t.name, COUNT(p.team_id) as nb_player
+ FROM player p
+ INNER JOIN team t ON t.id = p.team_id
+ GROUP BY p.team_id
+ ORDER BY COUNT(p.team_id) DESC    ->  FROM player p
+    ->  INNER JOIN team t ON t.id = p.team_id
+ GROUP BY p.team_id
+ ORDER BY COUNT(p.team_id) DESC; INNER JOIN team t ON t.id = p.team_id
+    ->  GROUP BY p.team_id
+    ->  ORDER BY COUNT(p.team_id) DESC;
++------------+-----------+
+| name       | nb_player |
++------------+-----------+
+| Gryffindor |        36 |
+| Slytherin  |        21 |
+| Ravenclaw  |        15 |
+| Hufflepuff |        12 |
++------------+-----------+
+4 rows in set (0,06 sec)
+
+//Retourne uniquement les noms des équipes complètes (ayant 14 joueurs ou plus, 
+c’est-à-dire 7 joueurs et 7 remplaçants minimum), classés par ordre alphabétique.
+
+mysql> SELECT t.name, COUNT(p.team_id) as nb_player
+    -> FROM player p
+    -> INNER JOIN team t ON t.id = p.team_id
+    -> GROUP BY p.team_id
+HAVING nb_player >= 14
+ORDER BY t.GROUP BY p.team_id
+    -> HAVING nb_player >= 14
+    -> ORDER BY t.name ASC;
++------------+-----------+
+| name       | nb_player |
++------------+-----------+
+| Gryffindor |        36 |
+| Ravenclaw  |        15 |
+| Slytherin  |        21 |
++------------+-----------+
+3 rows in set (0,00 sec)
+
+//L’entraîneur des Gryffondor est superstitieux, son jour préféré est le lundi. 
+Retourne la liste des joueurs de son équipe qui ont été enrôlés un lundi (il souhaite les faire jouer en priorité), 
+et classe les résultats par date d’enrôlement chronologique
+
+mysql> SELECT firstname, lastname, role, enrollment_date FROM player 
+        inner join team
+                on team.id=player.team_id
+        join wizard
+                on player.wizard_id=wizard.id
+        where team.name like 'Gryffindor' and dayname(    -> inner join team
+    -> 
+Display all 789 possibilities? (y or n) 
+    -> on team.id=player.team_id
+    -> join wizard
+    -> 
+Display all 789 possibilities? (y or n) 
+    -> on player.wizard_id=wizard.id
+    -> where team.name like 'Gryffindor' and dayname(enrollment_date) like 'Monday'
+    ->     order by enrollment_date;
++-----------+------------+--------+-----------------+
+| firstname | lastname   | role   | enrollment_date |
++-----------+------------+--------+-----------------+
+| George    | Weasley    | chaser | 1991-08-26      |
+| Alice     | Longbottom | beater | 1992-02-17      |
+| Cadogan   |            | keeper | 1993-01-04      |
+| Godric    | Gryffindor | seeker | 1993-08-30      |
+| Sirius    | Black      | beater | 1994-01-10      |
+| Aberforth | Dumbledore | keeper | 1995-04-24      |
+| Augusta   | Longbottom | chaser | 1999-10-25      |
++-----------+------------+--------+-----------------+
+7 rows in set (0,07 sec)
